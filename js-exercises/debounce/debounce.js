@@ -1,9 +1,8 @@
 function debounce(fn, timeInMs) {
   let timer;
-
-  return function internal(...args) {
+  return (...args) => {
     clearTimeout(timer);
-    timer = setTimeout(() => fn(args), timeInMs);
+    timer = setTimeout(() => fn.apply(this, ...args), timeInMs);
   };
 }
 export { debounce };
